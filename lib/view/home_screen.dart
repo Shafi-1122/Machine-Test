@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zartek_test/view/cart_screen.dart';
 import 'package:zartek_test/view/widgets/food_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,6 +24,15 @@ class HomeScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
+                Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>  OrderSummaryScreen(
+                                  // name: userInfo['displayName'] ?? '',
+                                  // email: userInfo['email'] ?? '',
+                                  ),
+                            ),
+                          );
                 // Handle cart icon press
               },
             ),
