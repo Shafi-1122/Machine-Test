@@ -10,16 +10,18 @@ class AuthProvider extends ChangeNotifier {
 
 // Saving user data to shared preference
   Future saveUIDDataToSharedPreferencesandNavigate(
-      uid, Registered, email, name) async {
+      uid, Registered, email, name, photo_url) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (uid.isNotEmpty) {
       await prefs.setString('uid', uid);
       await prefs.setString('mail', email);
       await prefs.setString('user_name', name);
+      await prefs.setString('photo_url', photo_url);
       if (kDebugMode) {
         print("uid $uid");
         print("mail $email");
         print("username $name");
+        print("photo_url $photo_url");
       }
     }
   }
@@ -31,6 +33,7 @@ class AuthProvider extends ChangeNotifier {
     await prefs.remove('uid');
     await prefs.remove('mail');
     await prefs.remove('user_name');
+    await prefs.remove('photo_url');
     await prefs.clear();
     print("Removed from shared ");
     // }
@@ -54,10 +57,12 @@ class AuthProvider extends ChangeNotifier {
       final User? user = userCredential.user;
 
       saveUIDDataToSharedPreferencesandNavigate(
-          user?.uid, false, user?.email, user?.displayName);
+          user?.uid, false, user?.email, user?.displayName, user?.photoURL);
 
       final String? email = user?.email;
       final String? displayName = user?.displayName;
+      final String? PhotoUrl = user?.photoURL;
+      final String? user_id = user?.uid;
 
       isUserSignIn = true;
       isLoading = false;
@@ -67,6 +72,8 @@ class AuthProvider extends ChangeNotifier {
       return {
         'email': email,
         'displayName': displayName,
+        'photoURL': PhotoUrl,
+        'uid': user_id
       };
     } on Exception catch (e) {
       isUserSignIn = false;
