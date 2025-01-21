@@ -22,8 +22,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final signInProvider = Provider.of<AuthProvider>(context, listen: false);
-
+    // Sample data for SaladCard generation
+    List<String> saladData = [
+      "Salad 1",
+      "Salad 2",
+      "Salad 3",
+      "Salad 4",
+      "Salad 5"
+    ];
+    final authPro = Provider.of<AuthProvider>(context, listen: false);
     return DefaultTabController(
       length: 5, // Number of tabs
       child: Scaffold(
@@ -49,27 +56,27 @@ class _HomeScreenState extends State<HomeScreen> {
             tabs: [
               Container(
                 width: MediaQuery.of(context).size.width /
-                    3, // 1/3rd of the screen width
+                    3, // 1/3 of the screen width
                 child: const Tab(text: "Tab 1"),
               ),
               Container(
                 width: MediaQuery.of(context).size.width /
-                    3, // 1/3rd of the screen width
+                    3, // 1/3 of the screen width
                 child: const Tab(text: "Tab 2"),
               ),
               Container(
                 width: MediaQuery.of(context).size.width /
-                    3, // 1/3rd of the screen width
+                    3, // 1/3 of the screen width
                 child: const Tab(text: "Tab 3"),
               ),
               Container(
                 width: MediaQuery.of(context).size.width /
-                    3, // 1/3rd of the screen width
+                    3, // 1/3 of the screen width
                 child: const Tab(text: "Tab 4"),
               ),
               Container(
                 width: MediaQuery.of(context).size.width /
-                    3, // 1/3rd of the screen width
+                    3, // 1/3 of the screen width
                 child: const Tab(text: "Tab 5"),
               ),
             ],
@@ -120,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   leading: const Icon(Icons.logout),
                   title: const Text('Sign Out'),
                   onTap: () async {
-                    bool value = await signInProvider.signOutFromGoogle();
+                    bool value = await authPro.signOutFromGoogle();
                     if (value) {
                       Navigator.pushReplacement(
                         context,
@@ -140,14 +147,39 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: TabBarView(
           children: [
-            Center(child: SaladCard()),
-            Center(child: Text('Content for Tab 2')),
-            Center(child: Text('Content for Tab 3')),
-            Center(child: Text('Content for Tab 4')),
-            Center(child: Text('Content for Tab 5')),
+            TabPage(tabIndex: 0),
+            TabPage(tabIndex: 1),
+            TabPage(tabIndex: 2),
+            TabPage(tabIndex: 3),
+            TabPage(tabIndex: 4),
           ],
         ),
       ),
+    );
+  }
+}
+
+class TabPage extends StatelessWidget {
+  final int tabIndex;
+
+  const TabPage({Key? key, required this.tabIndex}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Sample data for SaladCard generation
+    List<String> saladData = [
+      "Salad 1",
+      "Salad 2",
+      "Salad 3",
+      "Salad 4",
+      "Salad 5"
+    ];
+
+    return ListView.builder(
+      itemCount: saladData.length,
+      itemBuilder: (context, index) {
+        return SaladCard(); // Replace with your actual widget
+      },
     );
   }
 }

@@ -11,76 +11,122 @@ class _SaladCardState extends State<SaladCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(16.0),
+      margin: const EdgeInsets.all(16.0),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 50,
-                  height: 50,
+                  width: 30,
+                  height: 30,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
-                    image: DecorationImage(
-                      image: AssetImage('assets/salad.jpg'), // Replace with your image
+                    image: const DecorationImage(
+                      image: NetworkImage(
+                          'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/2048px-Veg_symbol.svg.png'), // Replace with your image
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Spinach Salad',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
-                      Text('SAR 7.95'),
-                      Text('15 calories'),
-                      Text(
-                        'Fresh spinach, mushrooms, and hard-boiled egg served with warm bacon vinaigrette',
-                        style: TextStyle(color: Colors.grey),
+                      const Row(
+                        children: [
+                          Text('SAR 7.95'),
+                          Spacer(),
+                          Text('15 calories'),
+                          SizedBox(
+                            width: 8,
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 13.0, bottom: 10),
+                        child: Text(
+                          'Fresh spinach, mushrooms, and hard-boiled egg served with warm bacon vinaigrette',
+                          style: TextStyle(
+                              // fontSize: 16,
+                              color: Colors.grey),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color:
+                              Colors.green, // Set the background color to green
+                          borderRadius: BorderRadius.circular(
+                              16), // Set a small border radius
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize
+                              .min, // Ensure the row only takes as much space as needed
+                          children: [
+                            IconButton(
+                              icon: const Icon(
+                                Icons.remove,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  if (quantity > 0) quantity--;
+                                });
+                              },
+                            ),
+                            Text(
+                              '$quantity',
+                              style: const TextStyle(
+                                  fontSize: 18, color: Colors.white),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  quantity++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      const Text(
+                        'Customizations Available',
+                        style: TextStyle(color: Colors.red),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.remove),
-                      onPressed: () {
-                        setState(() {
-                          if (quantity > 0) quantity--;
-                        });
-                      },
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    image: const DecorationImage(
+                      image: NetworkImage(
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjAMLedZRk2kc2Gg7NC0jRaHIjxa1-vf-b_A&s'), // Replace with your image
+                      fit: BoxFit.cover,
                     ),
-                    Text('$quantity', style: TextStyle(fontSize: 18)),
-                    IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        setState(() {
-                          quantity++;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                Text(
-                  'Customizations Available',
-                  style: TextStyle(color: Colors.red),
+                  ),
                 ),
               ],
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
