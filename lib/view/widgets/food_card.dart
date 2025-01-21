@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:zartek_test/model/menu_model.dart';
 
 class SaladCard extends StatefulWidget {
+  Dish dish;
+  SaladCard({required this.dish});
+
   @override
   _SaladCardState createState() => _SaladCardState();
 }
@@ -38,7 +42,7 @@ class _SaladCardState extends State<SaladCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Spinach Salad',
+                        widget.dish.name.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
@@ -102,7 +106,7 @@ class _SaladCardState extends State<SaladCard> {
                           ],
                         ),
                       ),
-                  const    SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       const Text(

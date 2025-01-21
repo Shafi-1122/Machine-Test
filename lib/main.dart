@@ -43,7 +43,8 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: OrderSummaryScreen()
+        home: HomeScreen(Username: 'Username', PhotoUrl: 'PhotoUrl', User_id: 'User_id')
+        // OrderSummaryScreen()
         
         // const SplashScreen(), // Splash screen
       ),
