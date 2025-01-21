@@ -6,7 +6,14 @@ import 'package:zartek_test/view/widgets/food_card.dart';
 import 'package:zartek_test/view_model/auth_provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String Username;
+  final String PhotoUrl;
+  final String User_id;
+  const HomeScreen(
+      {super.key,
+      required this.Username,
+      required this.PhotoUrl,
+      required this.User_id});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -41,23 +48,28 @@ class _HomeScreenState extends State<HomeScreen> {
             isScrollable: true,
             tabs: [
               Container(
-                width: MediaQuery.of(context).size.width / 3, // 1/3rd of the screen width
+                width: MediaQuery.of(context).size.width /
+                    3, // 1/3rd of the screen width
                 child: const Tab(text: "Tab 1"),
               ),
               Container(
-                width: MediaQuery.of(context).size.width / 3, // 1/3rd of the screen width
+                width: MediaQuery.of(context).size.width /
+                    3, // 1/3rd of the screen width
                 child: const Tab(text: "Tab 2"),
               ),
               Container(
-                width: MediaQuery.of(context).size.width / 3, // 1/3rd of the screen width
+                width: MediaQuery.of(context).size.width /
+                    3, // 1/3rd of the screen width
                 child: const Tab(text: "Tab 3"),
               ),
               Container(
-                width: MediaQuery.of(context).size.width / 3, // 1/3rd of the screen width
+                width: MediaQuery.of(context).size.width /
+                    3, // 1/3rd of the screen width
                 child: const Tab(text: "Tab 4"),
               ),
               Container(
-                width: MediaQuery.of(context).size.width / 3, // 1/3rd of the screen width
+                width: MediaQuery.of(context).size.width /
+                    3, // 1/3rd of the screen width
                 child: const Tab(text: "Tab 5"),
               ),
             ],
@@ -76,24 +88,28 @@ class _HomeScreenState extends State<HomeScreen> {
                       bottomRight: Radius.circular(30),
                     ),
                   ),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(height: 20),
                       CircleAvatar(
                         radius: 40, // Profile image size
-                        backgroundImage: NetworkImage('https://www.example.com/profile_image.jpg'), // Replace with the user's image URL
+                        backgroundImage: NetworkImage(widget
+                            .PhotoUrl), // Replace with the user's image URL
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Menu',
+                        widget.Username,
                         style: TextStyle(color: Colors.white, fontSize: 24),
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'ID: 12345', // Replace with the actual user ID or data
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        "User id: ${widget.User_id.substring(0, 5)}", // Replace with the actual user ID or data
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
                       ),
                       SizedBox(height: 20),
                     ],
@@ -108,7 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (value) {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const LoginScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()),
                       );
                     } else {
                       Fluttertoast.showToast(
@@ -121,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        body:  TabBarView(
+        body: TabBarView(
           children: [
             Center(child: SaladCard()),
             Center(child: Text('Content for Tab 2')),

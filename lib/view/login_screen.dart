@@ -17,7 +17,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   TextEditingController mobileController = TextEditingController();
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer<AuthProvider>(
@@ -45,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Add your OTP verification logic here
                       showPhoneDialog(context);
                     },
-                    icon: const Icon(Icons.phone, color: Colors.white),
+                    icon: Icon(Icons.phone, color: Colors.white),
                     label: const Padding(
                       padding: EdgeInsets.only(left: 12.0),
                       child: Text(
@@ -55,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -91,10 +90,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomeScreen(
-                                  // name: userInfo['displayName'] ?? '',
-                                  // email: userInfo['email'] ?? '',
-                                  ),
+                              builder: (context) => HomeScreen(
+                                Username: userInfo['displayName']!,
+                                PhotoUrl: userInfo['photoURL']!,
+                                User_id: userInfo['uid']!,
+                                // name: userInfo['displayName'] ?? '',
+                                // email: userInfo['email'] ?? '',
+                              ),
                             ),
                           );
                         } else {
@@ -184,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void showAlertDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
       backgroundColor: Colors.white, // White background
-      contentPadding: const EdgeInsets.all(16), // Add some padding
+      contentPadding: EdgeInsets.all(16), // Add some padding
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.zero, // Remove corner radius
       ),
@@ -220,14 +222,14 @@ class _LoginScreenState extends State<LoginScreen> {
     String phoneNumber = mobileController.text;
     // set up the buttons
     Widget cancelButton = TextButton(
-      child: const Text("Cancel"),
+      child: Text("Cancel"),
       onPressed: () {
         mobileController.clear();
         Navigator.pop(context); // Dismiss the dialog
       },
     );
     Widget continueButton = TextButton(
-      child: const Text("Continue"),
+      child: Text("Continue"),
       onPressed: () {
         if (phoneNumber.length == 10 &&
             RegExp(r'^[0-9]{10}$').hasMatch(phoneNumber)) {
@@ -245,19 +247,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: const Text("Enter Your Details"),
+      title: Text("Enter Your Details"),
       content: SizedBox(
         width: MediaQuery.of(context).size.width * 0.8, // 80% of screen width
         child: Column(
           mainAxisSize: MainAxisSize.min, // Adjust to content height
           children: [
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 10.0),
+              margin: EdgeInsets.symmetric(vertical: 10.0),
               child: TextField(
                 keyboardType: TextInputType.phone,
                 controller: mobileController,
                 maxLength: 10,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Mobile Number',
                 ),
