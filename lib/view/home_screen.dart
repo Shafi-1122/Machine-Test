@@ -27,8 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
      WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<HomeProvider>(context, listen: false).fetchData();
-
-      // print(object)
     });
     super.initState();
 
@@ -46,12 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
     final authPro = Provider.of<AuthProvider>(context, listen: false);
     return Consumer<HomeProvider>(
-      builder: (context,val,child) {
-        if(val.isLoading){
+      builder: (context,value,child) {
+        if(value.isLoading){
           return Center(child: CircularProgressIndicator(),);
         } else{
           return DefaultTabController(
-          length: val.menu!.categories.length, // Number of tabs
+          length: value.menu!.categories.length, // Number of tabs
           child: Scaffold(
             appBar: AppBar(
               leading: Builder(
@@ -81,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
               bottom: TabBar(
                 isScrollable: true,
-                tabs: val.menu!.categories.map((category) {
+                tabs: value.menu!.categories.map((category) {
             return Container(
               width: MediaQuery.of(context).size.width / 3, // 1/3 of the screen width
               child: Tab(text: category.name), // Use category from the provider
@@ -134,8 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       leading: const Icon(Icons.logout),
                       title: const Text('Sign Out'),
                       onTap: () async {
-                        bool value = await authPro.signOutFromGoogle();
-                        if (value) {
+                        bool valueue = await authPro.signOutFromGoogle();
+                        if (valueue) {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -154,11 +152,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             body:  TabBarView(
                     children: [
-                      TabPage(tabIndex: 0,prov: val,),
-                      TabPage(tabIndex: 1,prov: val),
-                      TabPage(tabIndex: 2,prov: val),
-                      TabPage(tabIndex: 3,prov: val),
-                      TabPage(tabIndex: 4,prov: val),
+                      TabPage(tabIndex: 0,prov: value,),
+                      TabPage(tabIndex: 1,prov: value),
+                      TabPage(tabIndex: 2,prov: value),
+                      TabPage(tabIndex: 3,prov: value),
+                      TabPage(tabIndex: 4,prov: value),
                     ],
                   )
                
