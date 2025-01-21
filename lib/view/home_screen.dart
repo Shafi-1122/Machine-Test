@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:zartek_test/view/login_screen.dart';
 import 'package:zartek_test/view/widgets/food_card.dart';
 import 'package:zartek_test/view_model/auth_provider.dart';
+import 'package:zartek_test/view_model/home_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   final String Username;
@@ -32,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       "Salad 5"
     ];
     final authPro = Provider.of<AuthProvider>(context, listen: false);
+    final Homepro = Provider.of<HomeProvider>(context, listen: false);
     return DefaultTabController(
       length: 5, // Number of tabs
       child: Scaffold(
@@ -49,14 +51,14 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
                 Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>  OrderSummaryScreen(
-                                  // name: userInfo['displayName'] ?? '',
-                                  // email: userInfo['email'] ?? '',
-                                  ),
-                            ),
-                          );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderSummaryScreen(
+                        // name: userInfo['displayName'] ?? '',
+                        // email: userInfo['email'] ?? '',
+                        ),
+                  ),
+                );
                 // Handle cart icon press
               },
             ),
@@ -155,14 +157,27 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        body: TabBarView(
-          children: [
-            TabPage(tabIndex: 0),
-            TabPage(tabIndex: 1),
-            TabPage(tabIndex: 2),
-            TabPage(tabIndex: 3),
-            TabPage(tabIndex: 4),
-          ],
+        body: FutureBuilder(
+          future: Homepro.fetchData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator(); // Show a loading indicator while fetching data
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              print("data ${snapshot.data['categories'][0]["name"]}");
+              // Display the fetched data
+              return TabBarView(
+                children: [
+                  TabPage(tabIndex: 0),
+                  TabPage(tabIndex: 1),
+                  TabPage(tabIndex: 2),
+                  TabPage(tabIndex: 3),
+                  TabPage(tabIndex: 4),
+                ],
+              );
+            }
+          },
         ),
       ),
     );

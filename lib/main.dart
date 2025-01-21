@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zartek_test/firebase_options.dart';
 import 'package:zartek_test/view/home_screen.dart';
 import 'package:zartek_test/view/splash.dart';
+import 'package:zartek_test/view_model/home_provider.dart';
 
 import 'view_model/auth_provider.dart'; // Import your AuthProvider
 
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => AuthProvider(), // Provide the AuthProvider here
+        ),
+        ChangeNotifierProvider(
+          create: (_) => HomeProvider(), // Provide the AuthProvider here
         ),
       ],
       child: MaterialApp(
