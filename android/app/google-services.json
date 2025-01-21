@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "399329982469",
+    "project_id": "diet-planner-4d43d",
+    "storage_bucket": "diet-planner-4d43d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399329982469:android:db7814560027c17b9dc46c",
+        "android_client_info": {
+          "package_name": "com.example.zartek_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399329982469-4a1o8kl8orkgighhgvd93eml3ivfq2fl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU-KA1WoTiOMu6LbhidCGAhkEvcaqjsyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399329982469-4a1o8kl8orkgighhgvd93eml3ivfq2fl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
