@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
               context,
               CupertinoPageRoute(
                   builder: (context) =>
-                      const HomeScreen())); //If sigh in Navigating to Home
+                       HomeScreen())); //If sigh in Navigating to Home
         });
       }
     } catch (e) {

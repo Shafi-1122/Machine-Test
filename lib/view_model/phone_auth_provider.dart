@@ -59,7 +59,7 @@ class PhoneAuth {
       print("Login successful");
       // TODO: Navigate to home page
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const HomeScreen();
+        return  HomeScreen();
       }));
     } catch (e) {
       print('Error signing in with phone number: $e');
