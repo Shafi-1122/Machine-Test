@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthProvider extends ChangeNotifier {
   bool isLoading = false;
   bool isUserSignIn = true;
-
+  
 // Saving user data to shared preference
   Future saveUIDDataToSharedPreferencesandNavigate(
       uid, Registered, email, name, photo_url) async {

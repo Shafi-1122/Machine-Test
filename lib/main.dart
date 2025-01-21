@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zartek_test/firebase_options.dart';
+import 'package:zartek_test/view/cart_screen.dart';
 import 'package:zartek_test/view/home_screen.dart';
 import 'package:zartek_test/view/splash.dart';
 
@@ -38,7 +39,9 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const SplashScreen(), // Splash screen
+        home: OrderSummaryScreen()
+        
+        // const SplashScreen(), // Splash screen
       ),
     );
   }

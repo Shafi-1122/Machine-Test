@@ -102,7 +102,7 @@ class _SaladCardState extends State<SaladCard> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                  const    SizedBox(
                         height: 12,
                       ),
                       const Text(

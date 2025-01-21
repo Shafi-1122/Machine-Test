@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>  OrderSummaryScreen(
