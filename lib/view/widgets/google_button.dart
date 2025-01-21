@@ -49,8 +49,8 @@ class _GoogleButtonState extends State<GoogleButton> {
           child: ElevatedButton(
             onPressed: widget.onTap,
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(widget.BtnColor),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              backgroundColor: WidgetStateProperty.all(widget.BtnColor),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.circular(8.0), // Adjust radius as needed
@@ -89,7 +89,7 @@ class _GoogleButtonState extends State<GoogleButton> {
     void showAlertDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
       backgroundColor: Colors.white, // White background
-      contentPadding: EdgeInsets.all(16), // Add some padding
+      contentPadding: const EdgeInsets.all(16), // Add some padding
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.zero, // Remove corner radius
       ),

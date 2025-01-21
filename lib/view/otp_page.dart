@@ -20,9 +20,9 @@ class OtpPageState extends State<OtpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: Text(
           'OTP Verification',
           style: GoogleFonts.poppins(
@@ -34,7 +34,7 @@ class OtpPageState extends State<OtpPage> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_back_rounded)),
+            icon: const Icon(Icons.arrow_back_rounded)),
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 19.sp, right: 19.sp, bottom: 80.sp),
@@ -74,8 +74,8 @@ class OtpPageState extends State<OtpPage> {
                         fieldHeight: 61.h,
                         fieldWidth: 53.w,
                         borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                        selectedColor: Color.fromARGB(255, 77, 77, 77),
-                        inactiveColor: Color.fromARGB(255, 201, 201, 201),
+                        selectedColor: const Color.fromARGB(255, 77, 77, 77),
+                        inactiveColor: const Color.fromARGB(255, 201, 201, 201),
                         activeColor: Colors.black,
                       ),
                     ),
@@ -99,14 +99,14 @@ class OtpPageState extends State<OtpPage> {
                           'Didn’t get the OTP?',
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w500,
-                              color: Color.fromARGB(255, 0, 0, 0),
+                              color: const Color.fromARGB(255, 0, 0, 0),
                               fontSize: 17.sp),
                         ),
                         Text(
                           'Resend SMS in 16s',
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w500,
-                              color: Color.fromARGB(255, 157, 157, 157),
+                              color: const Color.fromARGB(255, 157, 157, 157),
                               fontSize: 17.sp),
                         ),
                       ],
@@ -116,8 +116,8 @@ class OtpPageState extends State<OtpPage> {
               ),
               ElevatedButton(
                 style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                    foregroundColor: MaterialStatePropertyAll(Colors.white)),
+                    backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                    foregroundColor: WidgetStatePropertyAll(Colors.white)),
                 onPressed: () {
                   PhoneAuth.submitOtp(context, otp_controller.text);
                 },
