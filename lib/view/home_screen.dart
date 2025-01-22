@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //   "Salad 4",
     //   "Salad 5"
     // ];
-    final authPro = Provider.of<AuthProvider>(context, listen: false);
+    // ;
     return Consumer<HomeProvider>(builder: (context, value, child) {
       if (value.isLoading) {
         return Center(
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         leading: const Icon(Icons.logout),
                         title: const Text('Sign Out'),
                         onTap: () async {
-                          bool valueue = await authPro.signOutFromGoogle();
+                          bool valueue = await Provider.of<AuthProvider>(context, listen: false).signOutFromGoogle();
                           if (valueue) {
                             Navigator.pushReplacement(
                               context,

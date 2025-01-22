@@ -53,10 +53,13 @@ class _CartItemCardState extends State<CartItemCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        widget.title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                      Container(
+                        width: MediaQuery.of(context).size.width/3.5,
+                        child: Text(
+                          widget.title,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,),
+                        ),
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -81,7 +84,7 @@ class _CartItemCardState extends State<CartItemCard> {
                               },
                             ),
                             Text(
-                              '$quantity',
+                             " ${widget.description} ",
                               style: const TextStyle(
                                   fontSize: 18, color: Colors.white),
                             ),
@@ -99,11 +102,11 @@ class _CartItemCardState extends State<CartItemCard> {
                           ],
                         ),
                       ),
-                      Text(widget.price),
+                      Text((double.parse(widget.description)*double.parse(widget.price)).toString()),
                     ],
                   ),
-                  Text(widget.price),
-                  Text(widget.calories),
+                  Text("INR "+widget.price),
+                  Text(widget.calories+"Calories"),
                 ],
               ),
             ),
