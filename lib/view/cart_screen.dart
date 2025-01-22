@@ -22,7 +22,8 @@ class OrderSummaryScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(6.0),
           child: Container(
-            width: MediaQuery.of(context).size.width, // Full width of the screen
+            width:
+                MediaQuery.of(context).size.width, // Full width of the screen
             decoration: BoxDecoration(
               color: Colors.white, // Background color for the parent container
               borderRadius:
@@ -32,7 +33,7 @@ class OrderSummaryScreen extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.2), // Subtle shadow
                   spreadRadius: 2,
                   blurRadius: 6,
-                  offset: Offset(0, 4), // Shadow below the container
+                  offset: const Offset(0, 4), // Shadow below the container
                 ),
               ],
             ),
@@ -43,7 +44,8 @@ class OrderSummaryScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 12.0, right: 12),
                   child: Container(
-                    width: double.infinity, // Full width of the parent container
+                    width:
+                        double.infinity, // Full width of the parent container
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12.0,
                         vertical: 8.0), // Padding for green container
@@ -54,7 +56,7 @@ class OrderSummaryScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(
                           12), // Match the curve of the parent
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         '2 Dishes - 2 Items',
                         style: TextStyle(color: Colors.white, fontSize: 18),
@@ -63,21 +65,19 @@ class OrderSummaryScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height/2.5,
+                  height: MediaQuery.of(context).size.height / 2.5,
                   child: ListView.builder(
-                   
-                  itemCount:10,
-                    itemBuilder: (context,index) {
-                      return CartItemCard(
-                        title: 'Spinach Salad',
-                        price: 'SAR 7.95',
-                        calories: '15 calories',
-                        description:
-                            'Fresh spinach, mushrooms, and hard-boiled egg served with warm bacon vinaigrette',
-                        isVeg: true,
-                      );
-                    }
-                  ),
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return CartItemCard(
+                          title: 'Spinach Salad',
+                          price: 'SAR 7.95',
+                          calories: '15 calories',
+                          description:
+                              'Fresh spinach, mushrooms, and hard-boiled egg served with warm bacon vinaigrette',
+                          isVeg: true,
+                        );
+                      }),
                 ),
               ],
             ),

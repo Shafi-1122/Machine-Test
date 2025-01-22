@@ -4,10 +4,9 @@ import 'package:http/http.dart' as http;
 import 'package:zartek_test/model/menu_model.dart';
 
 class HomeProvider extends ChangeNotifier {
-
   MenuModel? menu;
   bool isLoading = false;
-  
+
   Future fetchData() async {
     isLoading = true;
     notifyListeners();
