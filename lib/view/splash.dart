@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
               context,
               CupertinoPageRoute(
                   builder: (context) =>
-                      HomeScreen())); //If sigh in Navigating to Home
+                      const HomeScreen())); //If sigh in Navigating to Home
         });
       }
     } catch (e) {
@@ -72,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Spacer(),
           Padding(
             padding: EdgeInsets.only(bottom: 30),
-            child: const CircularProgressIndicator(
+            child: CircularProgressIndicator(
               valueColor:
                   AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 16, 47, 6)),
             ),

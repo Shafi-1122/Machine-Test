@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
             },
-            icon: Icon(Icons.phone, color: Colors.white),
+            icon: const Icon(Icons.phone, color: Colors.white),
             label: const Padding(
               padding: EdgeInsets.only(left: 12.0),
               child: Text(
