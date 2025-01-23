@@ -91,10 +91,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomeScreen(
-                                  // name: userInfo['displayName'] ?? '',
-                                  // email: userInfo['email'] ?? '',
-                                  ),
+                              builder: (context) => HomeScreen(
+                                Username: userInfo['displayName']!,
+                                PhotoUrl: userInfo['photoURL']!,
+                                User_id: userInfo['uid']!,
+                                // name: userInfo['displayName'] ?? '',
+                                // email: userInfo['email'] ?? '',
+                              ),
                             ),
                           );
                         } else {

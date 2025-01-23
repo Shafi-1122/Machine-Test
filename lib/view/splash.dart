@@ -46,8 +46,11 @@ class _SplashScreenState extends State<SplashScreen> {
           Navigator.pushReplacement(
               context,
               CupertinoPageRoute(
-                  builder: (context) =>
-                      const HomeScreen())); //If sigh in Navigating to Home
+                  builder: (context) => HomeScreen(
+                        Username: prefs.getString('user_name') ?? '',
+                        PhotoUrl: prefs.getString('photo_url') ?? '',
+                        User_id: prefs.getString('uid') ?? '',
+                      ))); //If sigh in Navigating to Home
         });
       }
     } catch (e) {
