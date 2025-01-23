@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zartek_test/view_model/cart_provider.dart';
 
+// ignore: must_be_immutable
 class CartItemCard extends StatefulWidget {
   final String title;
   final String price;
   final String calories;
-  final String description;
+  int Quantity;
+  final int index;
   final bool isVeg; // true for Veg, false for Non-Veg
 
   CartItemCard({
     required this.title,
     required this.price,
     required this.calories,
-    required this.description,
+    required this.Quantity,
     required this.isVeg,
+    required this.index,
   });
 
   @override
@@ -54,11 +59,12 @@ class _CartItemCardState extends State<CartItemCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width/3.5,
+                        width: MediaQuery.of(context).size.width / 3.5,
                         child: Text(
                           widget.title,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       Container(
@@ -79,12 +85,15 @@ class _CartItemCardState extends State<CartItemCard> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  if (quantity > 0) quantity--;
+                                  if (widget.Quantity > 0) widget.Quantity--;
                                 });
+                                Provider.of<CartProvider>(context,
+                                        listen: false)
+                                    .dishRemoval(widget.Quantity, widget.index);
                               },
                             ),
                             Text(
-                             " ${widget.description} ",
+                              " ${widget.Quantity} ",
                               style: const TextStyle(
                                   fontSize: 18, color: Colors.white),
                             ),
@@ -95,18 +104,24 @@ class _CartItemCardState extends State<CartItemCard> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  quantity++;
+                                  widget.Quantity++;
                                 });
+                                Provider.of<CartProvider>(context,
+                                        listen: false)
+                                    .updateOrderCartList(
+                                        widget.Quantity, widget.index);
                               },
                             ),
                           ],
                         ),
                       ),
-                      Text((double.parse(widget.description)*double.parse(widget.price)).toString()),
+                      Text((double.parse(widget.Quantity.toString()) *
+                              double.parse(widget.price))
+                          .toString()),
                     ],
                   ),
-                  Text("INR "+widget.price),
-                  Text(widget.calories+"Calories"),
+                  Text("INR " + widget.price),
+                  Text(widget.calories + "Calories"),
                 ],
               ),
             ),

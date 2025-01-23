@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zartek_test/firebase_options.dart';
-import 'package:zartek_test/view/cart_screen.dart';
-import 'package:zartek_test/view/home_screen.dart';
 import 'package:zartek_test/view/splash.dart';
 import 'package:zartek_test/view_model/cart_provider.dart';
 import 'package:zartek_test/view_model/home_provider.dart';
@@ -41,18 +39,14 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: HomeScreen(
-              Username: 'Username', PhotoUrl: 'PhotoUrl', User_id: 'User_id')
-          // OrderSummaryScreen()
-
-          // const SplashScreen(), // Splash screen
-          ),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const SplashScreen(), // Splash screen
+      ),
     );
   }
 }

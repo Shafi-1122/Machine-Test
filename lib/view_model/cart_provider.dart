@@ -116,6 +116,23 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //Updating Cart On Cart Pag
+
+  void dishRemoval(int quantity, int index) {
+    if (quantity > 0) {
+      if (index != -1) {
+        // print('Index of $dishName: $index');
+        updateOrderCartList(quantity, index);
+        notifyListeners();
+      }
+    } else {
+      // print("Index $index");
+      CartList.removeAt(index);
+      print("Item removed. Now Cart List ${CartList}");
+      notifyListeners();
+    }
+  }
+
   void RemovingDish(
       {required String dishName,
       required String rate,

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:zartek_test/model/menu_model.dart';
 import 'package:zartek_test/view/cart_screen.dart';
@@ -45,9 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
     // ;
     return Consumer<HomeProvider>(builder: (context, value, child) {
       if (value.isLoading) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
+      } else if (value.menu == null) {
+        return const Text('No data available'); // Handle null state
       } else {
         return DefaultTabController(
           length: value.menu!.categories.length, // Number of tabs
@@ -69,9 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => OrderSummaryScreen(
-                                // name: userInfo['displayName'] ?? '',
-                                // email: userInfo['email'] ?? '',
-                                ),
+                                username: widget.Username,
+                                picUrl: widget.PhotoUrl,
+                                id: widget.User_id),
                           ),
                         );
                         // Handle cart icon press
@@ -107,27 +111,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             CircleAvatar(
                               radius: 40, // Profile image size
                               backgroundImage: NetworkImage(widget
                                   .PhotoUrl), // Replace with the user's image URL
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               widget.Username,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 24),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 24),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               "User id: ${widget.User_id.substring(0, 5)}", // Replace with the actual user ID or data
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                           ],
                         ),
                       ),
@@ -136,7 +140,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         leading: const Icon(Icons.logout),
                         title: const Text('Sign Out'),
                         onTap: () async {
-                          bool valueue = await Provider.of<AuthProvider>(context, listen: false).signOutFromGoogle();
+                          bool valueue = await Provider.of<AuthProvider>(
+                                  context,
+                                  listen: false)
+                              .signOutFromGoogle();
                           if (valueue) {
                             Navigator.pushReplacement(
                               context,
